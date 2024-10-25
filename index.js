@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 
@@ -10,19 +11,17 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("index");
+  fs.readdir(`./files`, (err, files) => {
+    res.render("index", { files: files });
+  });
 });
 
-app.get("/profile/:username", (req, res) => {
-  const username = req.params.username;
-  res.end(`${username}'s profile`);
-});
-
-app.get("/about/:username/:age", (req, res) => {
-  const username = req.params.username;
-  const age = req.params.age;
-
-  res.end(`Welcome ${username} with age ${age}`);
+app.post("/create", (req, res) => {
+  const fileName = req.body.title.split(" ").join("");
+  const details = req.body.details;
+  fs.writeFile(`./files/${fileName}.txt`, details, (err) => {
+    res.redirect("/");
+  });
 });
 
 app.listen(3000, () => {
