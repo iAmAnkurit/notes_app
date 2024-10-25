@@ -16,6 +16,14 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/file/:filename", (req, res) => {
+  const fileName = req.params.filename;
+
+  fs.readFile(`./files/${fileName}`, "utf-8", (err, fileData) => {
+    res.render("show", { fileName: fileName, fileData: fileData });
+  });
+});
+
 app.post("/create", (req, res) => {
   const fileName = req.body.title.split(" ").join("");
   const details = req.body.details;
