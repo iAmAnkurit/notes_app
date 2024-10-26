@@ -15,7 +15,7 @@ Here are the steps to setup the build environment:
 1. Make sure you have the command line programs `git`, and `node` version 18.0.0
 2. Clone the application repository (this one): `https://github.com/iAmAnkurit/notes_app.git`
 3. Run `npm install`
-4. Run `nodemon index.js`
+4. Run `npm start`
 
 ![image](https://github.com/user-attachments/assets/37056ffe-ddaf-4ee8-ad35-492df3d6f2c5)
 ![image](https://github.com/user-attachments/assets/10cb53c1-3c05-435d-b339-912125d4578b)
